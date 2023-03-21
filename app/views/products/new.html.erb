@@ -1,0 +1,10 @@
+<% if current_user%>
+<div class="col-lg-12">
+<div class="card mt-5 mb-5">
+  <div class="card-body">
+  <h2 class="text-center">Create New Item</h2>
+  </div>
+</div>
+<%=render 'form',product: @product %>
+<%=link_to 'Sign Out',destroy_user_session_path%>
+<%end%>
