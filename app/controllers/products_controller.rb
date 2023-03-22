@@ -1,22 +1,19 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_product, only: [:edit, :destroy]
   def index
-    if current_user
-      @products = Product.all 
-    else
-      redirect_to home_index_path, flash:{alert:"Please Sign In"}
-    end
+    @products = current_user.products.all
   end
   def new
-    @product = Product.new
+    @product = current_user.products.new
   end
   def create
-    @product = Product.new(product_params)
-      if @product.save
-        redirect_to products_path, flash:{ notice:"Item has been Created, Thanks!"}
-      else 
+    @product = current_user.products.new(product_params)
+    if @product.save
+      redirect_to products_path, flash:{ notice:"Item has been Created, Thanks!"}
+    else 
       render :new
-      end
+    end
   end
   def edit
   end
@@ -29,10 +26,8 @@ class ProductsController < ApplicationController
     end
   end
   def destroy 
-    if current_user && @product.destroy
-      redirect_to products_path
-    else
-      redirect_to products_path, flash:{alert:"You are not login. please login first!"}
+    if @product.destroy
+      redirect_to products_path, flash:{notice:"Item has been deleted.Thanks!"}
     end
   end
   private
@@ -42,7 +37,7 @@ class ProductsController < ApplicationController
     else
       @product = Product.find_by(id: params[:id])
     end
-    end
+  end
   def product_params
     params.require(:product).permit(:name,:your_name,:comapny_name,:description,:bank_account,:quantity,:starting_bid,:expected_bid,:phone_number)
   end
