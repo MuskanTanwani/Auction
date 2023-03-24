@@ -1,0 +1,21 @@
+<div class = "d-flex justify-content-center">
+    <h1> Latest Bids </h1>
+</div>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+    <th>Product Name</th>
+    <th>Latest Price</th>
+    <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%@bids.each do |bid| %>
+      <tr>
+        <td><%= bid.status %></td>
+        <td><%= bid.current_bid %></td>
+        <td><%= bid.time %></td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>
