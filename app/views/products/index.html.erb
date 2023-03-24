@@ -1,0 +1,31 @@
+<div class="card mt-5 mb-5">
+  <div class="card-body">
+    <h2 class="text-center"> Your Latest Live Bids</h2>
+  </div>
+</div>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+    <th>Product Name</th>
+    <th>Latest Price</th>
+    <th>Quantity</th>
+    <th>Product Company Name</th>
+    <th>Description</th>
+    <th>Edit Your Item Info</th>
+    <th>Delete Item</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%@products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.starting_bid %></td>
+        <td><%= product.quantity %></td>
+        <td><%= product.comapny_name %></td>
+        <td><%= product.description%></td>
+        <td><%= link_to "Edit" , edit_product_path(product),class:"btn btn-primary"%></td>
+        <td><%= link_to "Delete" ,product_path(product),class:"btn btn-danger",method: :delete,data:{confirm:"Deleting this item will stop the proccess of Bidding. Are you sure you want to delete?"}%></td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>

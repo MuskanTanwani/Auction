@@ -1,0 +1,92 @@
+<%= form_with model:product do |form|%>
+<div class ="row">
+  <div class="col-lg-4">
+    <div class="form-group">
+    <%=form.label:product_name,class:'mb-2'%>
+    <%=form.text_field:name,class:'form-control form-control-lg'%>
+    <%@product.errors.full_messages_for(:name).each do |message| %>
+    <p class="text-danger"><%=message%></p>
+    <%end%>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="form-group">
+    <%=form.label:your_name,class:'mb-2'%>
+    <%=form.text_field:your_name,class:'form-control form-control-lg'%>
+    <%@product.errors.full_messages_for(:your_name).each do |message| %>
+    <p class="text-danger"><%=message%></p>
+    <%end%>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="form-group">
+    <%=form.label:your_company_name,class:'mb-2'%>
+    <%=form.text_field:comapny_name,class:'form-control form-control-lg'%>
+    <%@product.errors.full_messages_for(:comapny_name).each do |message| %>
+    <p class="text-danger"><%=message%></p>
+    <%end%>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="form-group">
+    <%=form.label:starting_bid,class:'mb-2'%>
+    <%=form.text_field:starting_bid,class:'form-control form-control-lg'%>
+    <%@product.errors.full_messages_for(:starting_bid).each do |message| %>
+    <p class="text-danger"><%=message%></p>
+    <%end%>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="form-group">
+    <%=form.label:expected_bid,class:'mb-2'%>
+    <%=form.text_field:expected_bid,class:'form-control form-control-lg'%>
+    <%@product.errors.full_messages_for(:expected_bid).each do |message| %>
+    <p class="text-danger"><%=message%></p>
+    <%end%>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="form-group">
+    <%=form.label:description_of_product,class:'mb-2'%>
+    <%=form.text_field:description,class:'form-control form-control-lg'%>
+    <%@product.errors.full_messages_for(:description).each do |message| %>
+    <p class="text-danger"><%=message%></p>
+    <%end%>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="form-group">
+    <%=form.label:your_bank_account_number,class:'mb-2'%>
+    <%=form.text_field:bank_account,class:'form-control form-control-lg'%>
+    <%@product.errors.full_messages_for(:bank_account).each do |message| %>
+    <p class="text-danger"><%=message%></p>
+    <%end%>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="form-group">
+    <%=form.label:quantity_of_product,class:'mb-2'%>
+    <%=form.text_field:quantity,class:'form-control form-control-lg'%>
+    <%@product.errors.full_messages_for(:quantity).each do |message| %>
+    <p class="text-danger"><%=message%></p>
+    <%end%>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="form-group">
+    <%=form.label:your_phone_number,class:'mb-2'%>
+    <%=form.text_field:phone_number,class:'form-control form-control-lg'%>
+    <%@product.errors.full_messages_for(:phone_number).each do |message| %>
+    <p class="text-danger"><%=message%></p>
+    <%end%>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12 mt-4">
+  <%=form.submit class:'btn btn-primary btn-lg'%>
+  <%=link_to "Back to Auction",products_path,class:"btn btn-outline-primary btn-lg"%>
+</div>
+</div>
+<%end%>
+</div>
