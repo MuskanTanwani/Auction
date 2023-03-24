@@ -1,17 +1,17 @@
-<div class="d-flex justify-content-center">
-    <h1>Welcome to Live Auction System</h1>
+<div class = "d-flex justify-content-center">
+    <h1> Welcome to Live Auction System </h1>
 </div>
-<div class="row">
-<%@bids.each do |bid| %>
-<%unless current_user && current_user.id == bid.user_id%> 
-<div class="col-12 col-lg-4">
-<div class="card text-bg-primary mb-3 col-4" style="max-width: 18rem;">
-<div class="card-header"><%= bid.name %></div>
-<div class="card-body">
-<h5 class="card-title">Current Bid : <%= bid.starting_bid %></h5>
-<p class="card-text"><%= bid.comapny_name%></p>
-</div>
-</div>
-<%end%> 
-<%end%>
+<div class = "row">
+  <% @products.each do |product| %>
+    <% unless current_user && current_user.id == product.user_id %> 
+      <div class = "col-12 col-lg-4">
+      <div class = "card text-bg-primary mb-3 col-4" style="max-width: 18rem;">
+      <div class = "card-header"> <%= product.name %> </div>
+      <div class = "card-body">
+      <h5 class = "card-title"> Current Bid : <%= product.starting_bid %></h5>
+      <p class = "card-text"><%= product.comapny_name %></p>
+      </div>
+      </div>
+    <% end %> 
+  <% end %>
 </div>
