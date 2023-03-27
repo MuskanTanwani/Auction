@@ -6,7 +6,11 @@
     <tr>
     <th>Product Name</th>
     <th>Latest Price</th>
-    <th>Time</th>
+    <th>Ending Time</th>
+    <th>Description</th>
+    <th>Quantity</th>
+    <th>Status</th>
+    <th>Make a Bid</th>
     </tr>
   </thead>
   <tbody>
@@ -15,6 +19,9 @@
         <td><%= bid.status %></td>
         <td><%= bid.current_bid %></td>
         <td><%= bid.time %></td>
+        <td><%= bid.product.description %></td>
+        <td><%= bid.product.quantity %></td>
+        <td><%= bid.status %></td>
       </tr>
     <%end%>
   </tbody>

@@ -1,0 +1,20 @@
+<%= form_with model:bid do |form|%>
+<div class ="row">
+  <div class="col-lg-4">
+    <div class="form-group">
+    <%= form.label:your_bid,class:'mb-2' %>
+    <%= form.text_field:current_bid,class:'form-control form-control-lg' %>
+    <% @bid.errors.full_messages_for(:name).each do |message| %>
+    <p class="text-danger"><%= message %></p>
+    <%end%>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12 mt-4">
+  <%=form.submit class:'btn btn-primary btn-lg'%>
+  <%=link_to "Back to Bids",products_path,class:"btn btn-outline-primary btn-lg"%>
+</div>
+</div>
+<%end%>
+</div>
