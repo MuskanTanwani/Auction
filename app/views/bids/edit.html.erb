@@ -1,10 +1,16 @@
-<%= form_with model: bid, url: create_bid_path do |form| %>
+<div class="col-lg-12">
+<div class="card mt-5 mb-5">
+  <div class="card-body">
+  <h2 class="text-center">Edit Your Bid</h2>
+  </div>
+</div>
+<%= form_with model: @bid, url: update_bid_path do |form| %>
 <div class ="row">
   <div class="col-lg-4">
     <div class="form-group">
     <%= form.label:your_bid,class:'mb-2' %>
     <%= form.text_field:current_bid,class:'form-control form-control-lg' %>
-    <% bid.errors.full_messages_for(:current_bid).each do |message| %>
+    <% @bid.errors.full_messages_for(:current_bid).each do |message| %>
     <p class="text-danger"><%= message %></p>
     <%end%>
     </div>
