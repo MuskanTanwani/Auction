@@ -4,14 +4,19 @@ class BidsController < ApplicationController
 
   def index 
     @bids = Bid.all.where(product_id: params[:product_id])
+    @sortbids = @bids.order(current_bid: :desc)
+  end
+
+  def show 
+    @bids = current_user.bids.all
   end
 
   def new 
-    @bid = Bid.new(product_id: params[:product_id])
+    @bid = current_user.bids.new
   end
 
   def create
-    @bid = Bid.new(product_id:product_param[:product_id],current_bid:bid_params[:current_bid])
+    @bid = current_user.bids.new(product_id:product_param[:product_id],current_bid:bid_params[:current_bid])
     if @bid.save
       redirect_to product_bids_path, flash:{ notice:"Bid has been Created, Thanks!"}
     else 

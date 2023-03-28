@@ -10,7 +10,7 @@
       <div class = "card-body">
       <h5 class = "card-title"> Current Bid : <%= product.starting_bid %></h5>
       <p class = "card-text"><%= product.comapny_name %></p>
-      <div class = "card-header"> <%= link_to "Enter", bid_path(product.id),class: "text-white" %> </div> 
+      <div class = "card-header"> <%= link_to "Enter", product_bids_path(product),class: "text-white" %> </div> 
       </div>
       </div>
     <% end %> 

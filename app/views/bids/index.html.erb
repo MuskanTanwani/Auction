@@ -10,29 +10,21 @@
     <th>Product Name</th>
     <th>Latest Price</th>
     <th>Ending Time</th>
-    <th>Description</th>
     <th>Quantity</th>
     <th>Status</th>
-    <th>Update Your Bid</th>
-    <th>Delete Your Bid</th>
     </tr>
   </thead>
   <tbody>
-    <%@bids.each do |bid| %>
+    <%@sortbids.each do |bid| %>
       <tr>
         <td><%= bid.product.name %></td>
         <td><%= bid.current_bid %></td>
-        <td><%= bid.time %></td>
-        <td><%= bid.product.description %></td>
+        <td><%= bid.user_id %></td>
         <td><%= bid.product.quantity %></td>
         <td><%= bid.status %></td>
-        <%# <% if Bid.product.user_id == current_user.id %> 
-        <td><%= link_to "Edit" , edit_bid_path(:id => bid.id, :product_id => bid.product_id),class:"btn btn-primary"%></td>
-        <td><%= link_to "Delete" , destroy_bid_path(:id => bid.id, :product_id => bid.product_id), method: :delete, data: { turbo: false },class:"btn btn-primary"%></td>
       </tr>
     <%end%>
   </tbody>
 </table>
 
-<%# <a class="btn btn-primary" href=" destroy_bid_path(product_id: params[:product_id],id: params[:id]) " role="button">Delete your Bid</a> %>
 

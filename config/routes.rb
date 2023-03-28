@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   # get 'something', to: 'controller#action', as: 'something'
 
+  get 'bids', to: 'bids#show', as: 'user_bids'
+
   get '/products/:product_id/bids' , to: 'bids#index', as: 'product_bids'
   
   get '/products/:product_id/bids/new', to: 'bids#new', as: 'new_product_bid'
