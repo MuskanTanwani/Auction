@@ -9,11 +9,17 @@
         <li class="nav-item">
           <%=link_to 'Your Items',products_path,class:'navbar_brand'%> 
         </li>
+        <br>
         <li class="nav-item">
           <%=link_to 'Create Item','/products/new'%>
         </li>
+        <br>
         <li class="nav-item">
           <%=link_to 'Your Bids', user_bids_path %>
+        </li>
+        <br>
+         <li class="nav-item">
+          <%=link_to 'Your Won Bids', won_bids_path %>
         </li>
       </ul>
       <form class="d-flex" role="search">

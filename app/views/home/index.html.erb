@@ -8,7 +8,14 @@
       <div class = "card text-bg-primary mb-3 col-4" style="max-width: 18rem;">
       <div class = "card-header"> <%= product.name %> </div>
       <div class = "card-body">
-      <h5 class = "card-title"> Current Bid : <%= product.starting_bid %></h5>
+      <h5 class = "card-title"> Starting Bid : <%= product.starting_bid %></h5>
+      <h5 class = "card-title"> Current Highest Bid :
+        <% maxbid = ApplicationRecord.maximum_bid(product.id) %>
+        <% if maxbid == 0 %> Item has No Bids
+        <% else %>
+        <%= maxbid %>
+        <% end%>
+      </h5>
       <p class = "card-text"><%= product.comapny_name %></p>
       <div class = "card-header"> <%= link_to "Enter", product_bids_path(product),class: "text-white" %> </div> 
       </div>

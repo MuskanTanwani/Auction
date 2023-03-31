@@ -3,11 +3,16 @@ Rails.application.routes.draw do
   devise_for :users
   root 'home#index'
   get 'product/id'
+  get '/products/won'    ,to: 'bids#won', as: 'won_bids'
+  
   resources :products 
 
   # get 'something', to: 'controller#action', as: 'something'
 
+  put 'bids/:id/accept' , to: 'bids#accept', as: 'accept_bid'
+
   get 'bids', to: 'bids#show', as: 'user_bids'
+
 
   get '/products/:product_id/bids' , to: 'bids#index', as: 'product_bids'
   

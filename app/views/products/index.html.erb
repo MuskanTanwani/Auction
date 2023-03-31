@@ -15,14 +15,31 @@
     </tr>
   </thead>
   <tbody>
-    <%@products.each do |product| %>
+    <% @products.each do |product| %>
       <tr>
         <td><%= product.name %></td>
         <td><%= product.starting_bid %></td>
         <td><%= product.quantity %></td>
-        <td><%= Bid.maximum(:current_bid) %></td>
-        <td><%= link_to "Edit" , edit_product_path(product),class:"btn btn-primary"%></td>
-        <td><%= link_to "Delete" ,product_path(product),class:"btn btn-danger",method: :delete,data:{confirm:"Deleting this item will stop the proccess of Bidding. Are you sure you want to delete?"}%></td>
+        <td>
+        <% maxbid = ApplicationRecord.maximum_bid(product.id) %>
+        <% if maxbid == 0 %> 
+          Item has No Bids
+        <% else %>
+          <%= maxbid %>
+        <% end%>
+        <br>
+        <%= link_to "Enter" ,product_bids_path(product), class:"btn btn-primary" %>
+        </td>
+        <td>
+          <% if show_helper(product.id) == true %>
+            <%= link_to "Edit" , edit_product_path(product),class:"btn btn-primary"%>
+          <% end %>
+        </td>
+        <td>
+          <% if show_helper(product.id) == true %>
+            <%= link_to "Delete" ,product_path(product),class:"btn btn-danger",method: :delete,data:{confirm:"Deleting this item will stop the proccess of Bidding. Are you sure you want to delete?"}%>
+          <% end %>
+        </td>
       </tr>
     <%end%>
   </tbody>

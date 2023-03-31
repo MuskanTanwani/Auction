@@ -1,0 +1,33 @@
+<div class="card mt-5 mb-5">
+  <div class="card-body">
+    <h2 class="text-center"> Your Bids </h2>
+  </div>
+</div>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+    <th>Product Name</th>
+    <th>Starting Price</th>
+    <th>Your Bid</th>
+    <th>Quantity</th>
+    <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bids.each do |bid| %>
+      <tr>
+        <td><%= bid.product.name %></td>
+        <td><%= bid.product.starting_bid %></td>
+        <td><%= bid.current_bid%>
+        <td><%= bid.product.quantity %></td>
+        <% if bid_accept_check(bid) %>
+          <td>Accepted</td>
+        <% elsif bid_reject_check(bid) %>
+          <td>Not Accepted</td>
+        <% else %>
+          <td>Open for Auction</td>
+        <% end %>
+      </tr>
+    <%end%>
+  </tbody>
+</table>

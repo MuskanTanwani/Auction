@@ -2,6 +2,13 @@
 <div class="card mt-5 mb-5">
   <div class="card-body">
   <h2 class="text-center">Create New Bid</h2>
+  <h5 class="text-center">Current Highest Bid : 
+  <% maxbid = ApplicationRecord.maximum_bid(params[:product_id]) %>
+  <% if maxbid == 0 %> Item has No Bids
+  <% else %>
+  <%= maxbid %>
+  <% end%>
+  </h5>
   </div>
 </div>
 <%=render 'form', bid: @bid %>
