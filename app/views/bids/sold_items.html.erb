@@ -1,0 +1,25 @@
+<div class="card mt-5 mb-5">
+  <div class="card-body">
+    <h2 class="text-center"> Your Sold Items</h2>
+  </div>
+</div>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+    <th>Product Name</th>
+    <th>Starting Price</th>
+    <th>Quantity</th>
+    <th>Highest Bid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @items.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.starting_bid %></td>
+        <td><%= product.quantity %></td>
+        <td><%= product.price %></td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>

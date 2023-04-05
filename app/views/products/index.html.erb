@@ -16,6 +16,7 @@
   </thead>
   <tbody>
     <% @products.each do |product| %>
+      <% if show_helper(product.id) == true %>
       <tr>
         <td><%= product.name %></td>
         <td><%= product.starting_bid %></td>
@@ -26,21 +27,18 @@
           Item has No Bids
         <% else %>
           <%= maxbid %>
-        <% end%>
+        <% end %>
         <br>
         <%= link_to "Enter" ,product_bids_path(product), class:"btn btn-primary" %>
         </td>
         <td>
-          <% if show_helper(product.id) == true %>
             <%= link_to "Edit" , edit_product_path(product),class:"btn btn-primary"%>
-          <% end %>
         </td>
         <td>
-          <% if show_helper(product.id) == true %>
             <%= link_to "Delete" ,product_path(product),class:"btn btn-danger",method: :delete,data:{confirm:"Deleting this item will stop the proccess of Bidding. Are you sure you want to delete?"}%>
-          <% end %>
         </td>
       </tr>
+       <% end %>
     <%end%>
   </tbody>
 </table>

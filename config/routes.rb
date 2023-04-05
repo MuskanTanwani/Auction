@@ -5,11 +5,14 @@ Rails.application.routes.draw do
   get 'product/id'
   get '/products/won'    ,to: 'bids#won', as: 'won_bids'
   
+  get '/purchased/products', to: 'bids#purchased_items', as: 'purchased'
   resources :products 
 
   # get 'something', to: 'controller#action', as: 'something'
 
   put 'bids/:id/accept' , to: 'bids#accept', as: 'accept_bid'
+
+  put 'bids/:id', to: 'bids#bid_accept_by_buyer', as: 'purchase_item'
 
   get 'bids', to: 'bids#show', as: 'user_bids'
 
@@ -25,6 +28,8 @@ Rails.application.routes.draw do
   patch '/products/:product_id/bids/:id', to: 'bids#update', as: 'update_bid'
 
   delete '/products/:product_id/bids/:id', to: 'bids#destroy', as: 'destroy_bid'
+
+  get '/sold/products', to: 'bids#sold_items', as: 'sold_item'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -3,7 +3,8 @@
 </div>
 <div class = "row">
   <% @products.each do |product| %>
-    <% unless current_user && current_user.id == product.user_id %> 
+    <% if show_helper(product.id) == true %>  
+    <% unless current_user && current_user.id == product.user_id  %>  
       <div class = "col-12 col-lg-4">
       <div class = "card text-bg-primary mb-3 col-4" style="max-width: 18rem;">
       <div class = "card-header"> <%= product.name %> </div>
@@ -20,6 +21,7 @@
       <div class = "card-header"> <%= link_to "Enter", product_bids_path(product),class: "text-white" %> </div> 
       </div>
       </div>
-    <% end %> 
+     <% end %> 
+    <% end %>
   <% end %>
 </div>

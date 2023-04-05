@@ -1,19 +1,19 @@
 module ApplicationHelper
-
+ attr_accessor :toptwo, :seller
   def index_helper 
     if @bids.present? 
-      $toptwo = 0 
-      $seller = Product.find_by_id(@bids.first.product_id).user_id 
+      @toptwo = 0 
+      @seller = @bids.first.product.user_id
     end
   end
 
   def index_check(bids) 
-    bids.present? && current_user.id == $seller && show_helper(bids.first.product_id) == true
+    bids.present? && current_user.id == seller && show_helper(bids.first.product_id) == true
   end
   
   def index_accept(bid)
-    if $toptwo < 2 
-      $toptwo+=1 
+    if toptwo < 2 
+       @toptwo += 1 
       button_to 'Accept' , accept_bid_path(bid), method: :put
     end 
   end

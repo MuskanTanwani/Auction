@@ -3,11 +3,11 @@ class BidsController < ApplicationController
   before_action :authenticate_user!
 
   def index 
-    @bids = Bid.all.where(product_id: params[:product_id]).order(current_bid: :desc)
+    @bids = Bid.where(product_id: params[:product_id]).order(current_bid: :desc)
   end
 
   def show 
-    @bids = current_user.bids.all
+    @bids = current_user.bids.order(current_bid: :desc)
   end
 
   def new 
@@ -31,9 +31,25 @@ class BidsController < ApplicationController
     redirect_to home_index_path, flash:{ notice:"Bid has been Accepted, Thanks!"}
   end
 
+  def bid_accept_by_buyer 
+    bid = Bid.find_by_id(params[:id])
+    @email = bid.product.user.email
+    GuestJob.perform_later(@email)
+    bid.product.price = bid.current_bid
+    redirect_to home_index_path, flash:{ notice:"Item has been Purchased, Thanks!"}
+  end
+
   def won 
-    @bid = Bid.all.where(user_id: current_user.id)
-    @bid = Bid.all.where(status: true)
+    bid = current_user.bids.all
+    @bid = bid.where(status: true)
+  end
+
+  def purchased_items 
+    @item = current_user.bids.where(status: true)
+  end
+
+  def sold_items 
+    @items = current_user.products.where.not('price' => nil)
   end
 
   private
