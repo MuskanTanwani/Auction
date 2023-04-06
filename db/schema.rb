@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_22_132051) do
+ActiveRecord::Schema.define(version: 2023_03_31_144408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bids", force: :cascade do |t|
+    t.boolean "status", default: false
+    t.string "time"
+    t.integer "current_bid"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "product_id"
+    t.bigint "user_id"
+    t.string "account"
+    t.index ["product_id"], name: "index_bids_on_product_id"
+    t.index ["user_id"], name: "index_bids_on_user_id"
+  end
 
   create_table "products", force: :cascade do |t|
     t.string "name"
@@ -44,5 +57,7 @@ ActiveRecord::Schema.define(version: 2023_03_22_132051) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bids", "products"
+  add_foreign_key "bids", "users"
   add_foreign_key "products", "users"
 end

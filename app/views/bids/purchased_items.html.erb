@@ -1,0 +1,28 @@
+<div class="card mt-5 mb-5">
+  <div class="card-body">
+    <h2 class="text-center"> Your Purchased Items</h2>
+  </div>
+</div>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+    <th>Product Name</th>
+    <th>Starting Price</th>
+    <th>Quantity</th>
+    <th>Highest Bid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @item.each do |bid| %>
+    <% productid = bid.product_id %>
+    <% if  Product.find_by_id(productid).price.present? %>
+      <tr>
+        <td><%= bid.product.name %></td>
+        <td><%= bid.product.starting_bid %></td>
+        <td><%= bid.product.quantity %></td>
+        <td><%= bid.product.price %></td>
+      </tr>
+      <% end %>
+    <%end%>
+  </tbody>
+</table>

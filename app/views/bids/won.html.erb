@@ -1,0 +1,27 @@
+<div class="card mt-5 mb-5">
+  <div class="card-body">
+    <h2 class="text-center"> Your Won Bids </h2>
+  </div>
+</div>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+    <th>Product Name</th>
+    <th>Starting Price</th>
+    <th>Your Bid</th>
+    <th>Quantity</th>
+    <th>Accept and Pay</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bid.each do |bid| %>
+      <tr>
+        <td><%= bid.product.name %></td>
+        <td><%= bid.product.starting_bid %></td>
+        <td><%= bid.current_bid%>
+        <td><%= bid.product.quantity %></td>
+        <td><%= button_to 'Accept and Pay' , purchase_item_path(bid), method: :put %></td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>
