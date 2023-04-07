@@ -29,6 +29,15 @@
   </div>
   <div class="col-lg-4">
     <div class="form-group">
+    <%=form.label:image,class:'mb-2'%>
+    <%=form.file_field:image,class:'form-control form-control-lg'%>
+    <%@product.errors.full_messages_for(:comapny_name).each do |message| %>
+    <p class="text-danger"><%=message%></p>
+    <%end%>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="form-group">
     <%=form.label:starting_bid,class:'mb-2'%>
     <%=form.text_field:starting_bid,class:'form-control form-control-lg'%>
     <%@product.errors.full_messages_for(:starting_bid).each do |message| %>
