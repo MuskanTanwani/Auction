@@ -26,7 +26,7 @@ class BidsController < ApplicationController
   end
 
   def accept 
-    @bid = Bid.find(params[:id])
+    @bid = Bid.find_by_id(params[:id])
     @bid.bidaccept
     redirect_to home_index_path, flash:{ notice:"Bid has been Accepted, Thanks!"}
   end
@@ -34,8 +34,12 @@ class BidsController < ApplicationController
   def bid_accept_by_buyer 
     bid = Bid.find_by_id(params[:id])
     @email = bid.product.user.email
+    product = Product.find_by_id(bid.product_id)
+    product.price = bid.current_bid
+    product.save
+
+    # bid.product.price = bid.current_bid
     GuestJob.perform_later(@email)
-    bid.product.price = bid.current_bid
     redirect_to home_index_path, flash:{ notice:"Item has been Purchased, Thanks!"}
   end
 
@@ -49,7 +53,7 @@ class BidsController < ApplicationController
   end
 
   def sold_items 
-    @items = current_user.products.where.not('price' => nil)
+    @items = current_user.products.where.not(price: nil)
   end
 
   private

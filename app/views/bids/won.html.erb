@@ -15,13 +15,22 @@
   </thead>
   <tbody>
     <% @bid.each do |bid| %>
+      <% unless bid.product.price.present? %>
       <tr>
         <td><%= bid.product.name %></td>
         <td><%= bid.product.starting_bid %></td>
         <td><%= bid.current_bid%>
         <td><%= bid.product.quantity %></td>
-        <td><%= button_to 'Accept and Pay' , purchase_item_path(bid), method: :put %></td>
-      </tr>
+        <td>
+        <%= form_tag create_payment_method_path(bid), id: "billing-create-payment-method" do  %>
+        <%= link_to "Accept and Pay", payment_path(bid), remote: true, class: "btn btn-primary" %>
+        <% end %>
+        </td>
+        </tr>
+      <% end %>
     <%end%>
   </tbody>
 </table>
+
+
+<%# button_to 'Accept and Pay' , payment_path(bid),remote: true, method: :post %>

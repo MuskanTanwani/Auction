@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'ajax/:action', to: 'ajax#:action', :defaults => { :format => 'json' }
   get 'home/index'
   devise_for :users
   root 'home#index'
@@ -10,9 +11,13 @@ Rails.application.routes.draw do
 
   # get 'something', to: 'controller#action', as: 'something'
 
+  post "cards/:id" => "checkout#create_card", as: :create_payment_method
+
+  get 'bids/:id/payment', to: 'checkout#create', as: 'payment'
+
   put 'bids/:id/accept' , to: 'bids#accept', as: 'accept_bid'
 
-  put 'bids/:id', to: 'bids#bid_accept_by_buyer', as: 'purchase_item'
+  get 'bids/:id', to: 'bids#bid_accept_by_buyer', as: 'purchase_item'
 
   get 'bids', to: 'bids#show', as: 'user_bids'
 
