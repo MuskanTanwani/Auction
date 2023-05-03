@@ -1,22 +1,42 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <%=link_to 'Auction','/home/index'%>
+    <%=link_to 'Home','/home/index'%>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <%=link_to 'Your Bids',products_path,class:'navbar_brand'%> 
+          <%=link_to 'Your Live Items',products_path,class:'navbar_brand'%> 
         </li>
+        <br>
         <li class="nav-item">
           <%=link_to 'Create Item','/products/new'%>
         </li>
+        <br>
+        <li class="nav-item">
+          <%=link_to 'Your Bids', user_bids_path %>
+        </li>
+        <br>
+         <li class="nav-item">
+          <%=link_to 'Your Won Bids', won_bids_path %>
+        </li>
+        <br>
+        <li class="nav-item">
+          <%=link_to 'Your Sold Items', sold_item_path %>
+        </li> 
+        <br>
+        <li class="nav-item">
+          <%=link_to 'Your Purchased Items', purchased_path %>
+        </li> 
+        <br>
+        <li class="nav-item">
+          <%=link_to 'Your Rejected Bids', rejected_path %>
+        </li> 
+        <li class="nav-item">
+          <%=link_to 'Your Transaction History', payment_history_path %>
+        </li> 
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
     </div>
   </div>
 </nav>

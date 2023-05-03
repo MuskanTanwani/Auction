@@ -28,6 +28,9 @@
 #
 # To learn more, please read the Rails Internationalization guide
 # available at https://guides.rubyonrails.org/i18n.html.
+stripe:
+  secret_key: sk_test_51MtpCySJdXPbMuBnJxxqViTmDIJ8kiJK48ChDaBk2nyWJN6axKPVwkqVhzlwrh8VDxzhcBvT4n0qYQdhvOHq9KNp00THE7yQwK
+  publishable_key: pk_test_51MtpCySJdXPbMuBnUc2N9smD7daBxCmYwXGP1RM9PsViFXOYal314rppkwq8wvioQqmd1FySidauVzYZZLxVHQiG00c9hAxgDQ
 
 en:
   hello: "Hello world"

@@ -3,15 +3,36 @@
 </div>
 <div class = "row">
   <% @products.each do |product| %>
-    <% unless current_user && current_user.id == product.user_id %> 
-      <div class = "col-12 col-lg-4">
-      <div class = "card text-bg-primary mb-3 col-4" style="max-width: 18rem;">
-      <div class = "card-header"> <%= product.name %> </div>
-      <div class = "card-body">
-      <h5 class = "card-title"> Current Bid : <%= product.starting_bid %></h5>
-      <p class = "card-text"><%= product.comapny_name %></p>
-      </div>
-      </div>
-    <% end %> 
+    <% if show_helper(product.id) == true %>  
+      <% unless current_user && current_user.id == product.user_id  %>  
+        <div class = "col">
+          <div class="row row-cols-2 row-cols-md-3 g-4"> 
+            <div class="col-sm-6">
+              <div class="card text-white bg-primary" style="width: 18rem;">
+                <% if product.image.present? %>
+                  <%= image_tag product.image, class:"card-img-top", height: "300" %>
+                <% end  %>
+                <div class = "card-header"> <%= product.name %> </div>
+                <div class="card-body">
+                  <h5 class = "card-title"> Starting Bid : <%= product.starting_bid %></h5>
+                  <h5 class = "card-title"> Current Highest Bid :
+                    <% maxbid = ApplicationRecord.maximum_bid(product.id) %>
+                    <% if maxbid == 0 %> Item has No Bids
+                    <% else %>
+                    <%= maxbid %>
+                    <% end%>
+                  </h5>
+                  <p class = "card-text"><%= product.comapny_name %></p>
+                    <div class="card-body">
+                      <%= link_to "Enter", product_bids_path(product),class: "text-white" %>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <br>
+        </div>
+     <% end %> 
+    <% end %>
   <% end %>
 </div>

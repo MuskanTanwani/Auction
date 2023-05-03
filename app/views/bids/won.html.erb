@@ -1,0 +1,44 @@
+<div class="card mt-5 mb-5">
+  <div class="card-body">
+    <h2 class="text-center"> Your Won Bids </h2>
+  </div>
+</div>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+    <th>Product Name</th>
+    <th>Starting Price</th>
+    <th>Your Bid</th>
+    <th>Quantity</th>
+    <th>Ending Time</th>
+    <th>Accept and Pay</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bid.each do |bid| %>
+      <% unless bid.product.price.present? %>
+      <tr>
+        <td><%= bid.product.name %></td>
+        <td><%= bid.product.starting_bid %></td>
+        <td><%= bid.current_bid%>
+        <td><%= bid.product.quantity %></td>
+        <td><%= seconds_to_hms((bid.updated_at + 172800) - Time.now) %>
+        <% if (bid.updated_at + 172800) - Time.now > 0 %>
+            <td>
+              <%= form_tag create_payment_method_path(bid), id: "billing-create-payment-method" do  %>
+              <%= link_to "Accept and Pay", payment_path(bid), remote: true, class: "btn btn-primary" %>
+              <% end %>
+            </td>
+          <% else %>
+            <td>
+              <% bid.status = false %>
+              <% bid.rejection = true %>
+              <% bid.save %>
+            </td>
+        <% end %>
+      </tr>
+      <% end %>
+    <%end%>
+  </tbody>
+</table>
+

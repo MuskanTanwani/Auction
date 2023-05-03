@@ -1,0 +1,26 @@
+<div class="card mt-5 mb-5">
+  <div class="card-body">
+    <h2 class="text-center"> Your Transaction History </h2>
+  </div>
+</div>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+    <th>Product Name</th>
+    <th>Purchased Prise</th>
+    <th>Artist</th>
+    <th>Status</th>
+    <th>Date & Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @payments&.each do |payment| %>
+      <tr>
+        <td><%= payment.Product_Name %></td>
+        <td><%= payment.Purchased_Price %></td>
+        <td><%= payment.Seller_Name %></td> 
+        <td><%= payment.status %></td>
+        <td><%= payment.created_at %></td> 
+    <%end%>
+  </tbody>
+</table>

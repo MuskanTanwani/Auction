@@ -3,6 +3,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.0'
 
+gem 'sidekiq', '~> 6.5', '>= 6.5.8'
+
+gem 'redis-namespace'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.7', '>= 6.1.7.3'
 # Use postgresql as the database for Active Record
@@ -27,6 +31,7 @@ gem 'devise'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'awesome_print'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
