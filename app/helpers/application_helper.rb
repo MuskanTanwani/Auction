@@ -24,6 +24,8 @@ module ApplicationHelper
     
     if @bid.second.present? && (@bid.first.status == true || @bid.second.status == true)
       @show = false                     # Bid had been Accepted
+    elsif @bid.first.present? && @bid.first.status == true 
+      @show = false
     else 
       @show = true
     end

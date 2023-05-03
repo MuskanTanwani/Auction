@@ -10,6 +10,7 @@
     <th>Starting Price</th>
     <th>Your Bid</th>
     <th>Quantity</th>
+    <th>Ending Time</th>
     <th>Accept and Pay</th>
     </tr>
   </thead>
@@ -21,16 +22,23 @@
         <td><%= bid.product.starting_bid %></td>
         <td><%= bid.current_bid%>
         <td><%= bid.product.quantity %></td>
-        <td>
-        <%= form_tag create_payment_method_path(bid), id: "billing-create-payment-method" do  %>
-        <%= link_to "Accept and Pay", payment_path(bid), remote: true, class: "btn btn-primary" %>
+        <td><%= seconds_to_hms((bid.updated_at + 172800) - Time.now) %>
+        <% if (bid.updated_at + 172800) - Time.now > 0 %>
+            <td>
+              <%= form_tag create_payment_method_path(bid), id: "billing-create-payment-method" do  %>
+              <%= link_to "Accept and Pay", payment_path(bid), remote: true, class: "btn btn-primary" %>
+              <% end %>
+            </td>
+          <% else %>
+            <td>
+              <% bid.status = false %>
+              <% bid.rejection = true %>
+              <% bid.save %>
+            </td>
         <% end %>
-        </td>
-        </tr>
+      </tr>
       <% end %>
     <%end%>
   </tbody>
 </table>
 
-
-<%# button_to 'Accept and Pay' , payment_path(bid),remote: true, method: :post %>

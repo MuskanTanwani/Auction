@@ -2,7 +2,7 @@
     <h1> Latest Bids </h1>
 </div>
 
-<% if show_helper(params[:product_id].to_i) == true %>
+<% if current_user.id !=  Product.find_by_id(params[:product_id]).user_id && show_helper(params[:product_id]) == true %>
   <a class="btn btn-primary" href="<%= new_product_bid_path(product_id: params[:product_id]) %>" role="button">Make a Bid</a>
 <% end %>
 
@@ -13,7 +13,6 @@
     <tr>
     <th>Product Name</th>
     <th>Latest Price</th>
-    <th>Ending Time</th>
     <th>Quantity</th>
     <% if index_check(@bids) == true %> 
       <th>Accept Bid</th>
@@ -26,7 +25,6 @@
       <tr>
         <td><%= bid.product.name %></td>
         <td><%= bid.current_bid %></td>
-        <td><%= bid.user_id %></td>
         <td><%= bid.product.quantity %></td>
         <% if index_check(@bids) == true %>
           <td>

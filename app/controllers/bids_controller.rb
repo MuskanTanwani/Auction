@@ -34,6 +34,8 @@ class BidsController < ApplicationController
   def bid_accept_by_buyer 
     bid = Bid.find_by_id(params[:id])
     @email = bid.product.user.email
+
+    #  To change the price with current bid
     product = Product.find_by_id(bid.product_id)
     product.price = bid.current_bid
     product.save
@@ -50,6 +52,11 @@ class BidsController < ApplicationController
 
   def purchased_items 
     @item = current_user.bids.where(status: true)
+  end
+
+  def rejected 
+    bid = current_user.bids.all
+    @bid = bid.where(rejection: true)
   end
 
   def sold_items 
